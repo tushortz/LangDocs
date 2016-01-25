@@ -1,0 +1,9 @@
+[
+    {"keys": ["ctrl+9"], "command": "package_docs"},
+    {"keys": ["ctrl+0"], "command": "class_docs"},
+    {"keys": ["ctrl+alt+0"], "command": "method_docs"},
+    {"keys": ["ctrl+shift+0"], "command": "method_list"},
+    {"keys": ["ctrl+8"], "command": "definition"},
+    {"keys": ["ctrl+alt+8"], "command": "antonyms"},
+    {"keys": ["ctrl+shift+8"], "command": "synonyms"},
+]

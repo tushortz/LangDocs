@@ -1,0 +1,231 @@
+LangDocs
+=========
+
+A sublime text plugin that displays documentation for various language package, class, method as well as lists of methods for certain languages. For more information, please check <https://github.com/tushortz/LangDocs>
+
+Dictionary definition, scrabble and find with friend points, antonym and synonym are also supported for plain text files.
+
+Supported Languages and scopes
+------------------------------
+
+* CSS
+* HTML
+* Java
+* JavaScript
+* Matlab
+* Plain text (Dictionary)
+* Python
+* Ruby
+
+Where to find LangDocs Menu
+---------------------------
+
+Click on the Sublime text Menu –> Help –> LangDocs.
+
+Usage
+------
+
+	CSS
+	----
+		Property Description
+		---------------------
+		Displays a short description for the currently selected CSS property. For example, selecting color will display a short description of the color property and a link to its documentation for extra information.
+
+		Key Bindings
+		`````````````
+		Linux/Windows - Ctrl+0
+		OSX - Super+0
+
+		List Property Values
+		--------------------
+		Displays a list of available values for the currently selected CSS property. For example, selecting font-style will display italic, normal, oblique and a link to its documentation for extra information.
+
+		Key Bindings
+		`````````````
+		Linux/Windows - Ctrl+Shift+0
+		OSX - Super+Shift+0
+
+	Plain Text (Dictionary)
+	-----------------------
+		Antonyms
+		--------
+		Displays opposite words in meaning to the selected text. For example, selecting good will display antonyms similar to bad, bad fortune, bad luck, broken, corrupt, deceptive etc. and a link to its reference for extra information.
+
+		Key Bindings
+		`````````````
+		Linux/Windows - Ctrl+Alt+8
+		OSX - Super+Alt+8
+
+		Definition
+		----------
+		Displays the various meanings of the selected text. For example, selecting good will display some of its meanings, scrabble points, word with friends point and a link to its reference for extra information.
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+8
+		OSX - Super+8
+
+		Synonyms
+		--------
+		Displays list of words with exactly the same or similar in meaning to the selected text. For example, selecting chubby will display synonyms similar to ample, bearish, big, butterball, buxom etc. and a link to its reference for extra information.
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+Shift+8
+		OSX - Super+Shift+8
+
+	HTML
+	----
+		List Element Attributes
+		-----------------------
+		Displays a list of all available attributes for the currently selected HTML tags. For example, selecting table, <table>, or </table> will display a list of table attributes e.g.accesskey, align, bgcolor, border, cellpaddingetc. along with a link to its reference for extra information.
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+Shift+0
+		OSX - Super+Shift+0
+
+		Element Description
+		-------------------
+		Displays a short description to the selected HTML tag. and a link to its reference for extra information. You could select the element with the opening/closing tags or without the tags. e.g. a, <a>, or </a> will produce the same result.
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+0
+		OSX - Super+0
+
+	Java
+	----
+		Class Description
+		-----------------
+		Displays java class documentation for the currently selected class name and a link to its reference for extra information. For example, selecting InputStream will display the description of all occurrences of InputStream in all java packages whereas being more specific i.e. java.io.InputStream will display only the documentation of the InputStream class for java.io package.
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+0
+		OSX - Super+0
+
+		List Class Methods
+		------------------
+		Displays the list of various methods available for the selected class. For example, selecting Scanner or java.util.Scanner will display a list of available methods e.g. close(), delimiter(), findInLine(), findWithinHorizon(), hasNext(), hasNextBigDecimal() etc, and a link to its reference for extra information.
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+Shift+0
+		OSX - Super+Shift+0
+
+		Package Description
+		--------------------
+		Displays a short description of the selected package and a link to its reference for extra information. For example, java.io
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+9
+		OSX - Super+9
+
+	JavaScript
+	----------
+		List Methods | Properties
+		-------------------------
+		Displays a list of the selected Javascript object's methods and properties. For example, selecting Date will display a list of methods and properties e.g. UTC(), now(), parse(), prototype, prototype.getDate(), prototype.getDay() etc. and a link to its reference for extra information.
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+Shift+0
+		OSX - Super+Shift+0
+
+		Objects | Operators Description
+		--------------------------------
+		Shows a short description of the selected javascript object, expression or operator and a link to its reference for extra information. For example, Array will show
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+0
+		OSX - Super+0
+
+		Statement | Declaration Description
+		-----------------------------------
+		Shows a short description of the selected javascript statement or declaration and a link to its reference for extra information.. For example, break.
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+0
+		OSX - Super+0
+
+	MatLab
+	------
+		Methods Description
+		-------------------
+		Displays a short description of the selected matlab function/property and a link to its reference for extra information. For example reset
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+Alt+0
+		OSX - Super+Alt+0
+
+	Python
+	------
+		Built-in Function description
+		-----------------------------
+		Displays a short description of the selected python function and a link to its reference for extra information. For example dict
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+Alt+0
+		OSX - Super+Alt+0
+
+		List Module Methods
+		-------------------
+		Displays a list of all methods and properties of the currently selected python module. For example webbroswer will display get(using=None), open(url, new=0, autoraise=True), open_new(url), open_new_tab(url), register(name, constructor, instance=None) etc.
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+Shift+0
+		OSX - Super+Shift+0
+
+		Module Description
+		------------------
+		Displays a short description of the selected python module and a link to its reference for extra information. For example os
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+0
+		OSX - Super+0
+
+	Ruby
+	----
+		Base Class | Module Description
+		-------------------------------
+		Displays a short description of the selected Ruby module/class and a link to its reference for extra information. For example Random. Note that the classes that mostly fall under require "something" don't work for this category. e.g. json or a lot of lowercase classes
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+0
+		OSX - Super+0
+
+		List Module Methods
+		-------------------
+		Displays a list of all methods and properties of the currently selected ruby module. For example Range will produce ==, ===, begin, bsearch, cover?, each etc.
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+Shift+0
+		OSX - Super+Shift+0
+
+
+Contributing
+------------
+
+All contributions are welcome. fork LangDocs <https:github.com/tushortz/LangDocs> on Github and create a pull request. Any suggestions or bugs, please let me know.
+
+Licence
+-------
+
+© 2016 Taiwo Kareem | taiwo.kareem36@gmail.com.
+
+Read license.txt
+
+Acknowledgements
+----------------
+
+I’d first like to say a very big thank you to God my creator. Without him, this wouldn’t be possible.

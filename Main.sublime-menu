@@ -1,0 +1,86 @@
+[{
+    "id": "help",
+    "children":
+    [{
+        "caption": "LangDocs", "id": "langdocs",
+        "children":
+        [{
+            "caption": "CSS",
+            "id": "CSS",
+            "children":
+            [
+                { "command": "class_docs", "caption": "Property Description" },
+                { "command": "method_list", "caption": "List Property Values" },
+            ]
+        },
+        {
+            "caption": "Dictionary",
+            "id": "Dictionary",
+            "children":
+            [
+                { "command": "antonyms", "caption": "Antonyms" },
+                { "command": "definition", "caption": "Definition"},
+                { "command": "synonyms", "caption": "Synonyms" },
+            ]
+        },
+        {
+            "caption": "HTML",
+            "id": "HTML",
+            "children":
+            [
+                { "command": "method_list", "caption": "List Element Attributes" },
+                { "command": "class_docs", "caption": "Element Description" },
+            ]
+        },
+        {
+            "caption": "Java",
+            "id": "Java",
+            "children":
+            [
+                { "command": "class_docs", "caption": "Class Description" },
+                { "command": "method_list", "caption": "List Class Methods" },
+                { "command": "package_docs", "caption": "Package Description"  }
+            ]
+        },
+        {
+            "caption": "JavaScript",
+            "id": "JavaScript",
+            "children":
+            [
+                { "command": "method_list", "caption": "List Methods | Properties" },
+                { "command": "class_docs", "caption": "Objects | Operators Description" },
+                { "command": "class_docs", "caption": "Statement | Declaration Description" }
+            ]
+        },
+        {
+            "caption": "MatLab",
+            "id": "MatLab",
+            "children":
+            [
+                { "command": "method_docs", "caption": "Method Description" },
+            ]
+        },
+        {
+            "caption": "Python",
+            "id": "Python",
+            "children":
+            [
+                { "command": "method_docs", "caption": "Built-in Function Description" },
+                { "command": "method_list", "caption": "List Module Methods" },
+                { "command": "class_docs", "caption": "Module Description" },
+            ]
+        },
+        {
+            "caption": "Ruby",
+            "id": "Ruby",
+            "children":
+            [
+                { "command": "class_docs", "caption": "BaseClass | Module Description" },
+                { "command": "method_list", "caption": "List Module Methods" },
+            ]
+        },
+
+        ]
+    }]
+}]
+

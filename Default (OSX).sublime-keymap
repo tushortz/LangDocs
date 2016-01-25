@@ -1,0 +1,9 @@
+[
+    {"keys": ["super+9"], "command": "package_docs"},
+    {"keys": ["super+0"], "command": "class_docs"},
+    {"keys": ["super+alt+0"], "command": "method_docs"},
+    {"keys": ["super+shift+0"], "command": "method_list"},
+    {"keys": ["super+8"], "command": "definition"},
+    {"keys": ["super+alt+8"], "command": "antonyms"},
+    {"keys": ["super+shift+8"], "command": "synonyms"},
+]
