@@ -16,16 +16,16 @@ def openURL(text, url, classurl):
         classurl = str(urlopen(classurl).read())
     except: return
 
-    class_data = re.findall(r'<li><a href="([\w\s\d\\\/\.\-\_]+).html" title="[\w\s\.\"\>\<=]+">%s</\w+></' % text, classurl)
+    class_data = re.findall(r'<li><a href="([\w\s\d\.\"\>\<=/]+).html" title="[\w\s\d\.\"\>\<=]+">%s</\w+></' % text, classurl)
 
     if len(class_data) == 0:
-        class_data = re.findall(r'<li><a href="(%s).html" title="[\w\s\.\"\>\<=]+">[\w\s\d\_\\\/\-\.]+</\w+></' % text, classurl)
+        class_data = re.findall(r'<li><a href="(%s).html" title="[\w\s\d\.\"\>\<=]+">[\w\s\d\_\\\/\-\.]+</\w+></' % text, classurl)
     return class_data
 
 def multiJava(url):
 
     link = str(urlopen(url).read())
-    link = link.replace("\\n", "").replace("\\t", "").replace("\\r", "").replace("&nbsp;", " ").replace("\'", "'").replace("&quot;", "\"").replace("\\;", "").replace("\\'", "'").replace("&lt;", "<").replace("&gt;", ">").replace("&trade;", "(TM)").replace("&#8220;", "\"").replace("&#8221;", "\"").replace("\n", "").replace("\t", "").replace("\r", "").replace("&#8217;", "'")
+    link = link.replace("\\n", " ").replace("\\t", "").replace("\\r", "").replace("&nbsp;", " ").replace("\'", "'").replace("&quot;", "\"").replace("\\;", "").replace("\\'", "'").replace("&lt;", "<").replace("&gt;", ">").replace("&#8220;", "\"").replace("&#8221;", "\"").replace("\xe2\x80\x94", " -- ").replace("\\xe2\\x80\\x94", " -- ").replace("&#8217;", "'").replace("&para;", "|").replace("&uarr", "↑").replace("\xe2\x80\x98", "'").replace("\\xe2\\x80\\x98", "'").replace("\xe2\x80\x99", "'").replace("\\xe2\\x80\\x99", "'").replace("\xe2\x80\x9c", "\"").replace("\\xe2\\x80\\x9c", "\"").replace("\xe2\x80\x9c", "\"").replace("\\xe2\\x80\\x9c", "\"").replace("\xe2\x80\x9d", "\"").replace("\\xe2\\x80\\x9d", "\"").replace("\xe2\x80\x9d", "\"").replace("\\xe2\\x80\\x9d", "\"").replace("\xe2\x80\x93", "-").replace("\\xe2\\x80\\x93", "-").replace("\\xc2\\xa0", " ").replace("\xc2\xa0", " ").replace("&#8217;", "'").replace("&#8212;", "--")
 
     description = re.findall(r'<div class="block">(.*?)<div class="summary">', link)
 

@@ -99,4 +99,3 @@ class Method_listCommand(sublime_plugin.WindowCommand):
                     sublime.message_dialog(doc)
         except:
             sublime.status_message("Can't find result")
-

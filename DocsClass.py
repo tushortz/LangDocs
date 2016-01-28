@@ -4,6 +4,13 @@ from .ClassDocs.rubydoc import getRubyDoc
 from .ClassDocs.webdoc import getWebDoc
 import sublime, sublime_plugin
 
+css = (
+    "html {background-color: #0f0f0f; color: #eefbee; padding: 2px; }" +
+    "body {font-size: 11px; }" +
+    "b {color: #22aa22; }" +
+    "a {color: hotpink; }" +
+    "h1 {color: #cccccc; font-weight: bold; font-size: 14px; }"
+)
 
 class Class_docsCommand(sublime_plugin.WindowCommand):
     def run(self):
@@ -26,9 +33,16 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                     url = multiJava(x)[1]
 
                     if len(doc) > 1:
-                        doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, doc, url)
                         sublime.status_message("LangDocs: Reading documentation ...")
-                        sublime.message_dialog(doc)
+
+                        if int(sublime.version()) > 3000:
+                            doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, doc, url)
+                            view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+
+                        else:
+                            doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, doc, url)
+                            sublime.message_dialog(doc)
+
                     else:
                         sublime.status_message("LangDocs: Can't find documentation")
 
@@ -38,9 +52,16 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                 url = getRubyDoc(selected)[1]
 
                 if len(result) > 2:
-                    doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result, url)
                     sublime.status_message("LangDocs: Reading documentation ...")
-                    sublime.message_dialog(doc)
+
+                    if int(sublime.version()) > 3000:
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+
+                    else:
+                        doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result, url)
+                        sublime.message_dialog(doc)
+
                 else:
                     sublime.status_message("LangDocs: Can't find documentation ...")
 
@@ -49,9 +70,16 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                 result = getWebDoc(selected, "css")[1]
 
                 if len(result) > 2:
-                    doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[0:700], url)
                     sublime.status_message("LangDocs: Reading documentation ...")
-                    sublime.message_dialog(doc)
+
+                    if int(sublime.version()) > 3000:
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+
+                    else:
+                        doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
+                        sublime.message_dialog(doc)
+
                 else:
                     sublime.status_message("LangDocs: Can't find documentation")
 
@@ -60,9 +88,17 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                 result = getWebDoc(selected, "html")[1]
 
                 if len(result) > 2:
-                    doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[0:700], url)
+                    # doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[0:700], url)
                     sublime.status_message("LangDocs: Reading documentation ...")
-                    sublime.message_dialog(doc)
+
+                    if int(sublime.version()) > 3000:
+                        selected = selected.replace("</", "").replace("/>", "").replace("<","").replace(">", "")
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+
+                    else:
+                        doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
+                        sublime.message_dialog(doc)
                 else:
                     sublime.status_message("LangDocs: Can't find documentation")
 
@@ -73,7 +109,15 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                 if len(result) > 2:
                     doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[0:700], url)
                     sublime.status_message("LangDocs: Reading documentation ...")
-                    sublime.message_dialog(doc)
+
+                    if int(sublime.version()) > 3000:
+
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+
+                    else:
+                        doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
+                        sublime.message_dialog(doc)
                 else:
                     sublime.status_message("LangDocs: Can't find documentation")
 
@@ -81,12 +125,20 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                 url = str(getPythonDoc(selected)[0])
                 result = getPythonDoc(selected)[1]
 
+
                 if len(result) > 2:
-                    doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[0:700], url)
                     sublime.status_message("LangDocs: Reading documentation ...")
-                    sublime.message_dialog(doc)
+
+                    if int(sublime.version()) > 3000:
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+
+                    else:
+                        doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
+                        sublime.message_dialog(doc)
+
                 else:
                     sublime.status_message("LangDocs: Can't find documentation")
 
-        except:
+        except ValueError as e:
             sublime.status_message("LangDocs: Can't find documentation")

@@ -1,6 +1,14 @@
 from .ClassDocs.dictionary import getDictWords
 import sublime, sublime_plugin
 
+css = (
+	"html {background-color: #0f0f0f; color: #eefbee; padding: 2px; }" +
+	"body {font-size: 11px; }" +
+	"b {color: #22aa22; }" +
+	"a {color: hotpink; }" +
+	"h1 {color: #cccccc; font-weight: bold; font-size: 14px; }"
+)
+
 class AntonymsCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		sublime.set_timeout_async(self.getWordInfo, 0)
@@ -22,9 +30,18 @@ class AntonymsCommand(sublime_plugin.WindowCommand):
 				text = selected[0].title() + selected[1:]
 
 				if len(result) > 2:
-					doc =  "Antonym of \"%s\" %s\n\n%s \n\nRead more at: \"%s\"" % (text, spell, result, url)
+					doc =  "<h1>Antonym of \"%s\"</h1> <b>%s</b><br/>%s <br><br>Read more at: \"<a>%s</a>\"" % (text, spell, result, url)
+
 					sublime.status_message("LangDocs: Looking up word ...")
-					sublime.message_dialog(doc)
+
+					if int(sublime.version()) > 3000:
+						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700)
+
+					else:
+						doc = doc.replace("<br>", "\n").replace("<b>", "").replace("</b>", "").replace("<h1>", "").replace("</h1>","\n").replace("<a>", "").replace("</a>", "").replace("<br/>", "\n")
+						sublime.message_dialog(doc)
+
+
 				else:
 					sublime.status_message("LangDocs: Can't find word")
 		except:
@@ -52,9 +69,17 @@ class DefinitionCommand(sublime_plugin.WindowCommand):
 				text = selected[0].title() + selected[1:]
 
 				if len(result) > 2:
-					doc =  "%s Meaning%s\n\n%s\n\nRead more at: \"%s\"" % (text, spell, result, url)
+					doc =  "<h1>%s Meaning</h1> <b>%s</b><br><br>%s<br><br>Read more at: \"%s\"" % (text, spell, result, url)
+
 					sublime.status_message("LangDocs: Looking up word ...")
-					sublime.message_dialog(doc)
+
+					if int(sublime.version()) > 3000:
+						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700)
+
+					else:
+						doc = doc.replace("<br>", "\n").replace("<b>", "").replace("</b>", "").replace("<h1>", "").replace("</h1>","").replace("<a>", "").replace("</a>", "").replace("<br/>", "\n")
+						sublime.message_dialog(doc)
+
 				else:
 					sublime.status_message("LangDocs: Can't find word")
 			else:
@@ -83,9 +108,15 @@ class SynonymsCommand(sublime_plugin.WindowCommand):
 				text = selected[0].title() + selected[1:]
 
 				if len(result) > 2:
-					doc =  "Synonym of \"%s\" %s\n\n%s \n\nRead more at: \"%s\"" % (text, spell, result, url)
+					doc =  "<h1>Antonym of \"%s\"</h1> <b>%s</b><br/>%s <br><br>Read more at: \"<a>%s</a>\"" % (text, spell, result, url)
 					sublime.status_message("LangDocs: Looking up word ...")
-					sublime.message_dialog(doc)
+
+					if int(sublime.version()) > 3000:
+						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700)
+
+					else:
+						doc = doc.replace("<br>", "\n").replace("<b>", "").replace("</b>", "").replace("<h1>", "").replace("</h1>","\n").replace("<a>", "").replace("</a>", "").replace("<br/>", "\n")
+						sublime.message_dialog(doc)
 				else:
 					sublime.status_message("LangDocs: Can't find word")
 

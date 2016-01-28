@@ -26,7 +26,7 @@ def getDictWords(text, word_type):
 	# Exception handling in method body
 	try:
 		# Replace some html tags and unnecessary stuffs for better presentation
-		class_link = class_link.replace("\n", " ").replace("\t", "").replace("\r", "").replace("\\r", "").replace("&nbsp;", " ").replace("\'", "'").replace("\\'", "'").replace("&quot;", "\"").replace("\\;", "").replace("\'", "'").replace("&lt;", "<").replace("&gt;", ">").replace("&trade;", "(TM)").replace("&#8212;", "--").replace("&#8220;", "\"").replace("&#8221;", "\"").replace("\\n", " ").replace("\\t", "").replace("&#8217;", "'")
+		class_link = class_link.replace("\\n", " ").replace("\\t", "").replace("\\r", "").replace("&nbsp;", " ").replace("\'", "'").replace("&quot;", "\"").replace("\\;", "").replace("\\'", "'").replace("&lt;", "<").replace("&gt;", ">").replace("&#8220;", "\"").replace("&#8221;", "\"").replace("\xe2\x80\x94", " -- ").replace("\\xe2\\x80\\x94", " -- ").replace("&#8217;", "'").replace("&para;", "|").replace("&uarr", "↑").replace("\xe2\x80\x98", "'").replace("\\xe2\\x80\\x98", "'").replace("\xe2\x80\x99", "'").replace("\\xe2\\x80\\x99", "'").replace("\xe2\x80\x9c", "\"").replace("\\xe2\\x80\\x9c", "\"").replace("\xe2\x80\x9c", "\"").replace("\\xe2\\x80\\x9c", "\"").replace("\xe2\x80\x9d", "\"").replace("\\xe2\\x80\\x9d", "\"").replace("\xe2\x80\x9d", "\"").replace("\\xe2\\x80\\x9d", "\"").replace("\xe2\x80\x93", "-").replace("\\xe2\\x80\\x93", "-").replace("&#8212;", "--")
 
 		# Get defiinition
 		if word_type == "definition":
@@ -65,8 +65,8 @@ def getDictWords(text, word_type):
 		spell = pattern.sub("", "".join(spell[:1]))
 
 		if word_type == "definition":
-			description = "*" + description.replace("*", "\n*")
-			description = str(description[:700]) + "\n\nScrabble Point: %s\nWord With Friends Point: %s" % (scrabble, word_with_friend)
+			description = "*" + description.replace("*", "<br>*")
+			description = str(description[:700]) + "<br><br>Scrabble Point: %s<br>Word With Friends Point: %s" % (scrabble, word_with_friend)
 
 		return word_url, spell, description
 	except ValueError: return ""
