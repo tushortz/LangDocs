@@ -9,8 +9,8 @@
             "id": "CSS",
             "children":
             [
-                { "command": "class_docs", "caption": "Property Description" },
                 { "command": "method_list", "caption": "List Property Values" },
+                { "command": "class_docs", "caption": "Property Description" }
             ]
         },
         {
@@ -28,8 +28,8 @@
             "id": "HTML",
             "children":
             [
-                { "command": "method_list", "caption": "List Element Attributes" },
                 { "command": "class_docs", "caption": "Element Description" },
+                { "command": "method_list", "caption": "List Element Attributes" }
             ]
         },
         {
@@ -38,7 +38,8 @@
             "children":
             [
                 { "command": "class_docs", "caption": "Class Description" },
-                { "command": "method_list", "caption": "List Class Methods" },
+                { "command": "method_list", "caption": "Class Fields & Methods" },
+                { "command": "method_docs", "caption": "Interface & Inherited methods" },
                 { "command": "package_docs", "caption": "Package Description"  }
             ]
         },
@@ -47,9 +48,9 @@
             "id": "JavaScript",
             "children":
             [
-                { "command": "method_list", "caption": "List Methods | Properties" },
-                { "command": "class_docs", "caption": "Objects | Operators Description" },
-                { "command": "class_docs", "caption": "Statement | Declaration Description" }
+                { "command": "method_list", "caption": "List Methods & Properties" },
+                { "command": "class_docs", "caption": "Objects & Operators Description" },
+                { "command": "class_docs", "caption": "Statement & Declaration Description" }
             ]
         },
         {
@@ -57,7 +58,7 @@
             "id": "MatLab",
             "children":
             [
-                { "command": "method_docs", "caption": "Method Description" },
+                { "command": "method_docs", "caption": "Method Description" }
             ]
         },
         {
@@ -67,7 +68,7 @@
             [
                 { "command": "method_docs", "caption": "Built-in Function Description" },
                 { "command": "method_list", "caption": "List Module Methods" },
-                { "command": "class_docs", "caption": "Module Description" },
+                { "command": "class_docs", "caption": "Module Description" }
             ]
         },
         {
@@ -75,10 +76,10 @@
             "id": "Ruby",
             "children":
             [
-                { "command": "class_docs", "caption": "BaseClass | Module Description" },
-                { "command": "method_list", "caption": "List Module Methods" },
+                { "command": "class_docs", "caption": "BaseClass & Module Description" },
+                { "command": "method_list", "caption": "List Module Methods" }
             ]
-        },
+        }
 
         ]
     }]

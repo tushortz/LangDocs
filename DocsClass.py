@@ -5,8 +5,8 @@ from .ClassDocs.webdoc import getWebDoc
 import sublime, sublime_plugin
 
 css = (
-    "html {background-color: #0f0f0f; color: #eefbee; padding: 2px; }" +
-    "body {font-size: 11px; }" +
+    "html {background-color: #1B1B17; color: #eefbee; padding: 2px; }" +
+    "body {font-size: 11px; border-color: red;}" +
     "b {color: #22aa22; }" +
     "a {color: hotpink; }" +
     "h1 {color: #cccccc; font-weight: bold; font-size: 14px; }"
@@ -28,18 +28,18 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
 
         try:
             if scope == "java":
-                for x in getJavaDoc(selected):
+                for x in getJavaDoc(selected)[0:1]:
                     doc = multiJava(x)[0]
                     url = multiJava(x)[1]
 
                     if len(doc) > 1:
                         sublime.status_message("LangDocs: Reading documentation ...")
 
-                        if int(sublime.version()) > 3000:
+                        try:
                             doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, doc, url)
                             view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
 
-                        else:
+                        except:
                             doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, doc, url)
                             sublime.message_dialog(doc)
 
@@ -54,11 +54,11 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                 if len(result) > 2:
                     sublime.status_message("LangDocs: Reading documentation ...")
 
-                    if int(sublime.version()) > 3000:
+                    try:
                         doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result, url)
                         view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
 
-                    else:
+                    except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result, url)
                         sublime.message_dialog(doc)
 
@@ -72,11 +72,11 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                 if len(result) > 2:
                     sublime.status_message("LangDocs: Reading documentation ...")
 
-                    if int(sublime.version()) > 3000:
+                    try:
                         doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
                         view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
 
-                    else:
+                    except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
                         sublime.message_dialog(doc)
 
@@ -91,12 +91,12 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                     # doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[0:700], url)
                     sublime.status_message("LangDocs: Reading documentation ...")
 
-                    if int(sublime.version()) > 3000:
+                    try:
                         selected = selected.replace("</", "").replace("/>", "").replace("<","").replace(">", "")
                         doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
                         view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
 
-                    else:
+                    except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
                         sublime.message_dialog(doc)
                 else:
@@ -110,12 +110,12 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                     doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[0:700], url)
                     sublime.status_message("LangDocs: Reading documentation ...")
 
-                    if int(sublime.version()) > 3000:
+                    try:
 
                         doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
                         view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
 
-                    else:
+                    except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
                         sublime.message_dialog(doc)
                 else:
@@ -129,11 +129,11 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                 if len(result) > 2:
                     sublime.status_message("LangDocs: Reading documentation ...")
 
-                    if int(sublime.version()) > 3000:
+                    try:
                         doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
                         view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
 
-                    else:
+                    except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
                         sublime.message_dialog(doc)
 

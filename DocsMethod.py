@@ -1,10 +1,11 @@
 from .MethodDocs.matlabdoc import getMatlabFuncDoc
 from .MethodDocs.pydoc import pyFunc
+from .MethodDocs.javainherit import getOthers
 import sublime, sublime_plugin
 
 css = (
-    "html {background-color: #0f0f0f; color: #eefbee; padding: 2px; }" +
-    "body {font-size: 11px; }" +
+    "html {background-color: #1B1B17; color: #eefbee; padding: 2px; }" +
+    "body {font-size: 11px; border-color: red;}" +
     "b {color: #22aa22; }" +
     "a {color: hotpink; }" +
     "h1 {color: #cccccc; font-weight: bold; font-size: 14px; }"
@@ -25,18 +26,32 @@ class Method_docsCommand(sublime_plugin.WindowCommand):
         selected = view.substr(selText)
 
         try:
-            if scope == "python":
+            if scope == "java":
+
+                doc = getOthers(selected)[0]
+                url = getOthers(selected)[1]
+
+                sublime.status_message("Searching for methods ...")
+
+                try:
+                    doc =  "<h1>%s</h1><br>%s<br><br>Read more at: \"<a>%s</a>\"" % (selected, doc.replace("\n", "<br>"), url)
+                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                except:
+                    doc =  "%s Fields and Methods\n\n%s \n\nRead more at: \"%s\"" % (selected, doc, url)
+                    sublime.message_dialog(doc)
+
+            elif scope == "python":
                 url = (pyFunc(selected)[0])
                 result = pyFunc(selected)[1]
 
                 if len(result) > 2:
                     sublime.status_message("Reading documentation ...")
 
-                    if int(sublime.version()) > 3000:
+                    try:
                         doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
                         view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
 
-                    else:
+                    except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
                         sublime.message_dialog(doc)
                 else:
@@ -49,11 +64,11 @@ class Method_docsCommand(sublime_plugin.WindowCommand):
                 if len(result) > 2:
                     sublime.status_message("Reading documentation ...")
 
-                    if int(sublime.version()) > 3000:
+                    try:
                         doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
                         view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
 
-                    else:
+                    except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
                         sublime.message_dialog(doc)
             else:

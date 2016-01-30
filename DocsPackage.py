@@ -2,8 +2,8 @@ from .PackageDocs.javapac import getJavaPackDoc
 import sublime, sublime_plugin
 
 css = (
-    "html {background-color: #0f0f0f; color: #eefbee; padding: 2px; }" +
-    "body {font-size: 11px; }" +
+    "html {background-color: #1B1B17; color: #eefbee; padding: 2px; }" +
+    "body {font-size: 11px; border-color: red;}" +
     "b {color: #22aa22; }" +
     "a {color: hotpink; }" +
     "h1 {color: #cccccc; font-weight: bold; font-size: 14px; }"
@@ -29,11 +29,11 @@ class Package_docsCommand(sublime_plugin.WindowCommand):
                 url = getJavaPackDoc(selected)[1]
 
                 if len(doc) > 2:
-                    if int(sublime.version()) > 3000:
+                    try:
                         doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, doc, url)
                         view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
 
-                    else:
+                    except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, doc, url)
                         sublime.message_dialog(doc)
 

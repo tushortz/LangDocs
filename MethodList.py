@@ -1,8 +1,16 @@
-from .MethodListDocs.javalist import openURL, multiJava, getMethods
+from .MethodListDocs.javalist import getMethods
 from .MethodListDocs.pythonlist import getPythonFunc
 from .MethodListDocs.rubylist import getRubyFunc
 from .MethodListDocs.webfuncattr import getWebFunc
 import sublime, sublime_plugin, re, sys
+
+css = (
+    "html {background-color: #1B1B17; color: #eefbee; padding: 2px; }" +
+    "body {font-size: 11px; border-color: red;}" +
+    "b {color: #22aa22; }" +
+    "a {color: hotpink; }" +
+    "h1 {color: #cccccc; font-weight: bold; font-size: 14px; }"
+)
 
 class Method_listCommand(sublime_plugin.WindowCommand):
     def run(self):
@@ -20,42 +28,41 @@ class Method_listCommand(sublime_plugin.WindowCommand):
 
         try:
             if scope == "java":
-                javaseurl = "https://docs.oracle.com/javase/8/docs/api/%s.html"
-                javaseclass_url = "https://docs.oracle.com/javase/8/docs/api/allclasses-frame.html"
 
-                jfxurl = "https://docs.oracle.com/javase/8/javafx/api/%s.html"
-                jfxclass_url = "https://docs.oracle.com/javase/8/javafx/api/allclasses-frame.html"
+                doc = getMethods(selected)[0]
+                url = getMethods(selected)[1]
 
-                for x in getMethods(selected):
-                    doc = multiJava(x)[0]
-                    url = multiJava(x)[1]
+                sublime.status_message("Searching for methods ...")
 
-                    if len(doc) > 5:
-                        doc =  "%s Fields and Methods\n\n%s ... \n\nRead more at: \"%s\"" % (selected, doc, url)
-                        sublime.status_message("Searching for methods ...")
-                        sublime.message_dialog(doc)
-                    else:
-                        sublime.status_message("Can't find methods")
+                try:
+                    doc =  "<h1>%s</h1><br>%s<br><br>Read more at: \"<a>%s</a>\"" % (selected, doc.replace("\n", "<br>"), url)
+                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                except:
+                    doc =  "%s Fields and Methods\n\n%s \n\nRead more at: \"%s\"" % (selected, doc, url)
+                    sublime.message_dialog(doc)
 
             elif scope == "ruby":
                 result = getRubyFunc(selected)[0]
                 url = getRubyFunc(selected)[1]
 
-                if len(result) > 2:
-                    doc =  "%s methodsn\n\n%s\n\nRead more at: \"%s\"" % (selected, result, url)
-                    sublime.status_message("Searching for methods ...")
+                try:
+                    doc =  "<h1>%s Methods</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result.replace("\n", "<br>"), url)
+                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                except:
+                    doc =  "%s Fields and Methods\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result, url)
                     sublime.message_dialog(doc)
-                else:
-                    sublime.status_message("Can't find methods ...")
 
             elif scope == "html":
                 url = getWebFunc(selected, "html")[0]
                 result = getWebFunc(selected, "html")[1]
 
                 if len(result) > 2:
-                    doc =  "%s attributes\n\n%s \n\nRead more at: \"%s\"" % (selected, result, url)
-                    sublime.status_message("LangDocs: Reading documentation ...")
-                    sublime.message_dialog(doc)
+                    try:
+                        doc =  "<h1>%s Attributes</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result.replace("\n", "<br>"), url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                    except:
+                        doc =  "%s Fields and Methods\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result, url)
+                        sublime.message_dialog(doc)
                 else:
                     sublime.status_message("LangDocs: Can't find attributes")
 

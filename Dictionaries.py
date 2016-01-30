@@ -2,8 +2,8 @@ from .ClassDocs.dictionary import getDictWords
 import sublime, sublime_plugin
 
 css = (
-	"html {background-color: #0f0f0f; color: #eefbee; padding: 2px; }" +
-	"body {font-size: 11px; }" +
+	"html {background-color: #1B1B17; color: #eefbee; padding: 2px; }" +
+	"body {font-size: 11px; border-color: red;}" +
 	"b {color: #22aa22; }" +
 	"a {color: hotpink; }" +
 	"h1 {color: #cccccc; font-weight: bold; font-size: 14px; }"
@@ -34,13 +34,12 @@ class AntonymsCommand(sublime_plugin.WindowCommand):
 
 					sublime.status_message("LangDocs: Looking up word ...")
 
-					if int(sublime.version()) > 3000:
+					try:
 						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700)
 
-					else:
+					except:
 						doc = doc.replace("<br>", "\n").replace("<b>", "").replace("</b>", "").replace("<h1>", "").replace("</h1>","\n").replace("<a>", "").replace("</a>", "").replace("<br/>", "\n")
 						sublime.message_dialog(doc)
-
 
 				else:
 					sublime.status_message("LangDocs: Can't find word")
@@ -73,10 +72,10 @@ class DefinitionCommand(sublime_plugin.WindowCommand):
 
 					sublime.status_message("LangDocs: Looking up word ...")
 
-					if int(sublime.version()) > 3000:
+					try:
 						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700)
 
-					else:
+					except:
 						doc = doc.replace("<br>", "\n").replace("<b>", "").replace("</b>", "").replace("<h1>", "").replace("</h1>","").replace("<a>", "").replace("</a>", "").replace("<br/>", "\n")
 						sublime.message_dialog(doc)
 
@@ -111,10 +110,10 @@ class SynonymsCommand(sublime_plugin.WindowCommand):
 					doc =  "<h1>Antonym of \"%s\"</h1> <b>%s</b><br/>%s <br><br>Read more at: \"<a>%s</a>\"" % (text, spell, result, url)
 					sublime.status_message("LangDocs: Looking up word ...")
 
-					if int(sublime.version()) > 3000:
+					try:
 						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700)
 
-					else:
+					except:
 						doc = doc.replace("<br>", "\n").replace("<b>", "").replace("</b>", "").replace("<h1>", "").replace("</h1>","\n").replace("<a>", "").replace("</a>", "").replace("<br/>", "\n")
 						sublime.message_dialog(doc)
 				else:

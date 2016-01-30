@@ -1,10 +1,10 @@
 # LangDocs
 
-A sublime text plugin that displays documentation for various language package, class, method as well as lists of methods for certain languages.
+A sublime text 3 plugin that displays documentation for various language package, class, method as well as lists of methods for certain languages.
 
 Dictionary definition, scrabble and find with friend points, antonym and synonym are also supported for plain text files.
 
-![Sample java.util.Arrays](preview.png)
+![Sample java.util.Arrays](preview.gif)
 
 ## Supported Languages and scope
 
@@ -17,11 +17,6 @@ Dictionary definition, scrabble and find with friend points, antonym and synonym
 * Python
 * Ruby
 
-## Where to find LangDocs Menu
-
-> Click on the Sublime text Menu --> Help --> LangDocs.
-
-![Help Menu](usage.png)
 
 ## Usage
 
@@ -95,9 +90,9 @@ Dictionary definition, scrabble and find with friend points, antonym and synonym
 
 <!-- JAVA -->
 	<tr>
-		<td rowspan="3"><strong>Java</strong></td>
+		<td rowspan="4"><strong>Java</strong></td>
 		<td>
-			<strong>Class Description</strong> - Displays java class documentation for the currently selected <em>class</em> name and a link to its reference for extra information. For example, selecting <strong>InputStream</strong> will display the description of all occurrences of InputStream in all java packages whereas being more specific i.e. <strong>java.io.InputStream</strong> will display only the documentation of the <code>InputStream</code> class for <code>java.io</code> package.
+			<strong>Class Description</strong> - Displays java class documentation for the currently selected <em>class</em> name and a link to its reference for extra information. For example, selecting <strong>java.io.InputStream</strong> will display the documentation of the <code>InputStream</code> class for <code>java.io</code> package.
 			<br><br><strong>Linux/Windows</strong> - <kbd>Ctrl</kbd>+<kbd>0</kbd>
 			<br><strong>OSX</strong> - <kbd>Super</kbd>+<kbd>0</kbd>
 		</td>
@@ -105,9 +100,17 @@ Dictionary definition, scrabble and find with friend points, antonym and synonym
 
 	<tr>
 		<td>
-			<strong>List Class Methods</strong> - Displays the list of various methods available for the selected class. For example, selecting <strong>Scanner</strong> or <strong>java.util.Scanner</strong> will display a list of available methods e.g. <code>close()</code>, <code>delimiter()</code>, <code>findInLine()</code>, <code>findWithinHorizon()</code>, <code>hasNext()</code>, <code>hasNextBigDecimal()</code> etc, and a link to its reference for extra information.
+			<strong>Class Fields &amp; Methods</strong> - Displays the list of various methods available for the selected class. For example, selecting <strong>java.util.Scanner</strong> will display a list of available methods e.g. <code>close()</code>, <code>delimiter()</code>, <code>findInLine()</code>, <code>findWithinHorizon()</code>, <code>hasNext()</code>, <code>hasNextBigDecimal()</code> etc, and a link to its reference for extra information.
 			<br><br><strong>Linux/Windows</strong> - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>0</kbd>
 			<br><strong>OSX</strong> - <kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>0</kbd>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<strong>Interface &amp; Inherited Methods</strong> - Displays the list of various implemented interfaces, as well as all inherited fields and methods available for the selected class. For example, selecting <strong>java.util.Scanner</strong> all the requested information.
+			<br><br><strong>Linux/Windows</strong> - <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>0</kbd>
+			<br><strong>OSX</strong> - <kbd>Super</kbd>+<kbd>Alt</kbd>+<kbd>0</kbd>
 		</td>
 	</tr>
 
@@ -123,7 +126,7 @@ Dictionary definition, scrabble and find with friend points, antonym and synonym
 	<tr>
 		<td rowspan="3"><strong>JavaScript</strong></td>
 		<td>
-			<strong>List Methods | Properties</strong> - Displays a list of the selected Javascript object's methods and properties. For example, selecting <strong>Date</strong> will display a list of methods and properties e.g. <code>UTC()</code>, <code>now()</code>, <code>parse()</code>, <code>prototype</code>, <code>prototype.getDate()</code>, <code>prototype.getDay()</code> etc. and a link to its reference for extra information.
+			<strong>List Methods &amp; Properties</strong> - Displays a list of the selected Javascript object's methods and properties. For example, selecting <strong>Date</strong> will display a list of methods and properties e.g. <code>UTC()</code>, <code>now()</code>, <code>parse()</code>, <code>prototype</code>, <code>prototype.getDate()</code>, <code>prototype.getDay()</code> etc. and a link to its reference for extra information.
 			<br><br><strong>Linux/Windows</strong> - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>0</kbd>
 			<br><strong>OSX</strong> - <kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>0</kbd>
 		</td>
@@ -131,7 +134,7 @@ Dictionary definition, scrabble and find with friend points, antonym and synonym
 
 	<tr>
 		<td>
-			<strong>Objects | Operators Description</strong> - Shows a short description of the selected javascript object, expression or operator and a link to its reference for extra information. For example, <strong>Array</strong> will show
+			<strong>Objects &amp; Operators Description</strong> - Shows a short description of the selected javascript object, expression or operator and a link to its reference for extra information. For example, <strong>Array</strong> will show
 			<br><br><strong>Linux/Windows</strong> - <kbd>Ctrl</kbd>+<kbd>0</kbd>
 			<br><strong>OSX</strong> - <kbd>Super</kbd>+<kbd>0</kbd>
 		</td>
@@ -139,7 +142,7 @@ Dictionary definition, scrabble and find with friend points, antonym and synonym
 
 	<tr>
 		<td>
-			<strong>Statement | Declaration Description</strong> - Shows a short description of the selected javascript statement or declaration and a link to its reference for extra information.. For example, <strong>break</strong>.
+			<strong>Statement &amp; Declaration Description</strong> - Shows a short description of the selected javascript statement or declaration and a link to its reference for extra information.. For example, <strong>break</strong>.
 			<br><br><strong>Linux/Windows</strong> - <kbd>Ctrl</kbd>+<kbd>0</kbd>
 			<br><strong>OSX</strong> - <kbd>Super</kbd>+<kbd>0</kbd>
 		</td>
@@ -185,7 +188,7 @@ Dictionary definition, scrabble and find with friend points, antonym and synonym
 	<tr>
 		<td rowspan="2"><strong>Ruby</strong></td>
 		<td>
-			<strong>Base Class | Module Description</strong> - Displays a short description of the selected Ruby module/class and a link to its reference for extra information. For example <strong>Random</strong>. <em>Note that the classes that mostly fall under require "something" don't work for this category. e.g. json or a lot of lowercase classes</em>
+			<strong>Base Class &amp; Module Description</strong> - Displays a short description of the selected Ruby module/class and a link to its reference for extra information. For example <strong>Random</strong>. <em>Note that the classes that mostly fall under require "something" don't work for this category. e.g. json or a lot of lowercase classes</em>
 			<br><br><strong>Linux/Windows</strong> - <kbd>Ctrl</kbd>+<kbd>0</kbd>
 			<br><strong>OSX</strong> - <kbd>Super</kbd>+<kbd>0</kbd>
 		</td>

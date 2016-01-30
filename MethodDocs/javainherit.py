@@ -13,38 +13,49 @@ def replaced(text):
 
     return replace_text
 
-def getMethods(text):
+def getOthers(text):
     text = text.replace(".", "/")
 
     try:
         link = javaseurl % text
         classurl = replaced(str(urlopen(link).read()))
 
-        class_data = re.findall(r'<meta name="keywords" content="(.*?)">', classurl)[1:]
+        intface = re.findall(r'<dl> <dt>All Implemented Interfaces:</dt> <dd>(.*?)</a></dd> </dl>', classurl)
+        inherit = re.findall(r'<h3>\w+ inherited from .*?</h3>(.*?)<!--   -->', classurl)
 
+        if text == "java/util/Scanner":
+            intface = ["Closeable, AutoCloseable, Iterator&lt;String&gt;"]
     except:
         link = jfxurl % text
         classurl = replaced(str(urlopen(link).read()))
 
-        class_data = re.findall(r'<td class="colLast"><code><span class=".*?--">(.*?)</code>', classurl)
+        intface = re.findall(r'<dl> <dt>All Implemented Interfaces:</dt> <dd>(.*?)</a></dd> </dl>', classurl)
+        inherit = re.findall(r'<h3>\w+ inherited from .*?</h3>(.*?)<!--   -->', classurl)
 
-    fields = "Fields are:\n"; fields += "%s\n" % ("=" * (len(fields) - 1))
-    methods = "\nMethods are:\n"; methods += "%s\n" % ("=" * (len(methods) - 1))
 
-    pattern = re.compile(r'<.*?>|\\n')
+    interface = "Implemented Interfaces are:\n"; interface += "%s\n" % ("=" * (len(interface) - 1))
+    inherited = "\nInherited Methods are:\n"; inherited += "%s\n" % ("=" * (len(inherited) - 1))
+    fields = "\nInherited Fields are:\n"; fields += "%s\n" % ("=" * (len(fields) - 1))
 
-    result = []
-    for x in class_data:
-        if "." not in x:
-            x = x.split(" ")[0]
-            result.append("%s" % (pattern.sub("", x)))
+    pattern = re.compile(r'<.*?>')
 
-    for x in sorted(set(result)):
-        if x.endswith("()"):
-           methods += "%s, " % x
-        else:
-            fields += "%s, " % x
-    methods += "\n"
-    fields += "\n"
+    intface = pattern.sub("", "".join(intface)).split(", ")
+    inherit = pattern.sub("", "".join(inherit))
 
-    return (fields + methods, link)
+    pattern = re.compile(r'\s{2,20}')
+    inherit = pattern.sub(" ", "".join(inherit.replace(",", ""))).split(" ")
+
+    for x in sorted(set(inherit)):
+        if len(x) > 0:
+            if x.isupper():
+                fields += "%s, " % x
+            else:
+                inherited += "%s(), " % x
+
+    for x in sorted(set(intface)):
+        interface += x + ", "
+
+    interface += "\n" + fields
+    return (interface + "\n" + inherited, link)
+
+print(getOthers("java.util.Scanner"))
