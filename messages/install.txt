@@ -98,21 +98,30 @@ Usage
 	----
 		Class Description
 		-----------------
-		Displays java class documentation for the currently selected class name and a link to its reference for extra information. For example, selecting InputStream will display the description of all occurrences of InputStream in all java packages whereas being more specific i.e. java.io.InputStream will display only the documentation of the InputStream class for java.io package.
+		Displays java class documentation for the currently selected class name and a link to its reference for extra information. For example, selecting java.io.InputStream will display the description of all occurrences of InputStream in all java packages whereas being more specific i.e. java.io.InputStream will display only the documentation of the InputStream class for java.io package.
 
 		Key Bindings
 		````````````
 		Linux/Windows - Ctrl+0
 		OSX - Super+0
 
-		List Class Methods
-		------------------
-		Displays the list of various methods available for the selected class. For example, selecting Scanner or java.util.Scanner will display a list of available methods e.g. close(), delimiter(), findInLine(), findWithinHorizon(), hasNext(), hasNextBigDecimal() etc, and a link to its reference for extra information.
+		Class Field and Methods
+		-----------------------
+		Displays the list of various methods available for the selected class. For example, selecting java.util.Scanner will display a list of available methods e.g. close(), delimiter(), findInLine(), findWithinHorizon(), hasNext(), hasNextBigDecimal() etc, and a link to its reference for extra information.
 
 		Key Bindings
 		````````````
 		Linux/Windows - Ctrl+Shift+0
 		OSX - Super+Shift+0
+
+		Interface and Inherited Methods
+		-------------------------------
+		Displays the list of various implemented interfaces, as well as all inherited fields and methods available for the selected class. For example, selecting java.util.Scanner will display all the requested information.
+
+		Key Bindings
+		````````````
+		Linux/Windows - Ctrl+Alt+0
+		OSX - Super+Alt+0
 
 		Package Description
 		--------------------

@@ -108,7 +108,7 @@ Dictionary definition, scrabble and find with friend points, antonym and synonym
 
 	<tr>
 		<td>
-			<strong>Interface &amp; Inherited Methods</strong> - Displays the list of various implemented interfaces, as well as all inherited fields and methods available for the selected class. For example, selecting <strong>java.util.Scanner</strong> all the requested information.
+			<strong>Interface &amp; Inherited Methods</strong> - Displays the list of various implemented interfaces, as well as all inherited fields and methods available for the selected class. For example, selecting <strong>java.util.Scanner</strong>will display all the requested information.
 			<br><br><strong>Linux/Windows</strong> - <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>0</kbd>
 			<br><strong>OSX</strong> - <kbd>Super</kbd>+<kbd>Alt</kbd>+<kbd>0</kbd>
 		</td>
