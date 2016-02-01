@@ -57,5 +57,3 @@ def getOthers(text):
 
     interface += "\n" + fields
     return (interface + "\n" + inherited, link)
-
-print(getOthers("java.util.Scanner"))
