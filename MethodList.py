@@ -58,10 +58,10 @@ class Method_listCommand(sublime_plugin.WindowCommand):
 
                 if len(result) > 2:
                     try:
-                        doc =  "<h1>%s Attributes</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result.replace("\n", "<br>"), url)
+                        doc =  "<h1>%s Attributes</h1><br>%s <br><br>Read more at: \"<a>%s</a>\"" % (selected, result.replace("\n", "<br>"), url)
                         view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
                     except:
-                        doc =  "%s Fields and Methods\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result, url)
+                        doc =  "%s Fields and Methods\n\n%s\n\nRead more at: \"%s\"" % (selected, result, url)
                         sublime.message_dialog(doc)
                 else:
                     sublime.status_message("LangDocs: Can't find attributes")
@@ -71,38 +71,48 @@ class Method_listCommand(sublime_plugin.WindowCommand):
                 result = getWebFunc(selected, "css")[1]
 
                 if len(result) > 2:
-                    doc =  "%s values\n\n%s \n\nRead more at: \"%s\"" % (selected, result, url)
                     sublime.status_message("Reading documentation ...")
+                try:
+                    doc =  "<h1>%s values</h1><br>%s<br><br>Read more at: \"<a>%s</a>\"" % (selected, result, url)
+                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                except:
+                    doc =  "%s values\n\n%s \n\nRead more at: \"%s\"" % (selected, result, url)
                     sublime.message_dialog(doc)
-                else:
-                    sublime.status_message("Can't find property values")
 
             elif scope == "js":
                 url = str(getWebFunc(selected, "javascript")[0])
                 result = getWebFunc(selected, "javascript")[1]
 
                 if len(result) > 2:
-                    doc =  "%s Methods and properties\n\n%s \n\nRead more at: \"%s\"" % (selected, result, url)
                     sublime.status_message("Reading documentation ...")
-                    sublime.message_dialog(doc)
-                else:
-                    sublime.status_message("Can't find methods/properties")
+
+                    try:
+                        doc =  "<h1>%s Method and Properties</h1><br>%s<br><br>Read more at: \"<a>%s</a>\"" % (selected, result, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                    except:
+                        doc =  "%s Methods and properties\n\n%s \n\nRead more at: \"%s\"" % (selected, result, url)
+                        sublime.message_dialog(doc)
+
 
             elif scope == "python":
                 mainlist = getPythonFunc(selected)[0]
                 otherlist = getPythonFunc(selected)[1]
                 url = getPythonFunc(selected)[2]
 
-                if len(mainlist) > 0:
-                    doc =  "%s Method Lists\n\n%s ... \n\nRead more at: \"%s\"" % (selected, mainlist, url)
-                    sublime.status_message("Reading documentation ...")
-                    sublime.message_dialog(doc)
-                else:
-                    sublime.status_message("Can't find /methods")
+                sublime.status_message("Reading documentation ...")
 
-                if len(otherlist) > 0:
-                    doc =  "%s Constants and others\n\n%s \n\nRead more at: \"%s\"" % (selected, otherlist, url)
-                    sublime.status_message("Reading documentation ...")
-                    sublime.message_dialog(doc)
+                try:
+                    doc =  "<h1>%s Method Lists</h1><br>%s <br><br><h1>%s Constants and Others </h1><br>%s <br><br>Read more at: \"<a>%s<a>\"" % (selected, mainlist, selected, otherlist, url)
+                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+
+                except:
+                    if len(mainlist) > 0:
+                        doc =  "%s Method Lists\n\n%s ... \n\nRead more at: \"%s\"" % (selected, mainlist, url)
+                        sublime.message_dialog(doc)
+
+                    if len(otherlist) > 0:
+                        doc =  "%s Constants and others\n\n%s \n\nRead more at: \"%s\"" % (selected, otherlist, url)
+                        sublime.message_dialog(doc)
+
         except:
             sublime.status_message("Can't find result")
