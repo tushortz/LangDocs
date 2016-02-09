@@ -89,7 +89,6 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                 result = getWebDoc(selected, "html")[1]
 
                 if len(result) > 2:
-                    # doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[0:700], url)
                     sublime.status_message("LangDocs: Reading documentation ...")
 
                     try:
