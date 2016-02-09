@@ -1,0 +1,9 @@
+[
+    {"caption": "LangDocs: Package Description", "command": "package_docs"},
+    {"caption": "LangDocs: Prop/Element/Mod Class Description", "command": "class_docs"},
+    {"caption": "LangDocs: Method Description", "command": "method_docs"},
+    {"caption": "LangDocs: List Method/Attribute/Property", "command": "method_list"},
+    {"caption": "LangDocs: Dictionary", "command": "definition"},
+    {"caption": "LangDocs: Antonyms", "command": "antonyms"},
+    {"caption": "LangDocs: Synonyms", "command": "synonyms"}
+]
