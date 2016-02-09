@@ -2,7 +2,7 @@ from .ClassDocs.javadoc import openURL, multiJava, getJavaDoc
 from .ClassDocs.pythondoc import getPythonDoc
 from .ClassDocs.rubydoc import getRubyDoc
 from .ClassDocs.webdoc import getWebDoc
-import sublime, sublime_plugin
+import sublime, sublime_plugin, webbrowser
 
 css = (
     "html {background-color: #1B1B17; color: #eefbee; padding: 2px; }" +
@@ -36,8 +36,9 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                         sublime.status_message("LangDocs: Reading documentation ...")
 
                         try:
-                            doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, doc, url)
-                            view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                            doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, doc, url, url)
+                            view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                                on_navigate=lambda x:(webbrowser.open(url)))
 
                         except:
                             doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, doc, url)
@@ -55,9 +56,9 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                     sublime.status_message("LangDocs: Reading documentation ...")
 
                     try:
-                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result, url)
-                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
-
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result, url, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                                on_navigate=lambda x:(webbrowser.open(url)))
                     except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result, url)
                         sublime.message_dialog(doc)
@@ -73,9 +74,9 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                     sublime.status_message("LangDocs: Reading documentation ...")
 
                     try:
-                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
-                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
-
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result[:700], url, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
                     except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
                         sublime.message_dialog(doc)
@@ -93,8 +94,9 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
 
                     try:
                         selected = selected.replace("</", "").replace("/>", "").replace("<","").replace(">", "")
-                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
-                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result[:700], url, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
 
                     except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
@@ -112,8 +114,9 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
 
                     try:
 
-                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
-                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result[:700], url, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
 
                     except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
@@ -130,8 +133,9 @@ class Class_docsCommand(sublime_plugin.WindowCommand):
                     sublime.status_message("LangDocs: Reading documentation ...")
 
                     try:
-                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
-                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result[:700], url, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
 
                     except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)

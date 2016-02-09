@@ -1,5 +1,5 @@
 from .PackageDocs.javapac import getJavaPackDoc
-import sublime, sublime_plugin
+import sublime, sublime_plugin, webbrowser
 
 css = (
     "html {background-color: #1B1B17; color: #eefbee; padding: 2px; }" +
@@ -30,8 +30,9 @@ class Package_docsCommand(sublime_plugin.WindowCommand):
 
                 if len(doc) > 2:
                     try:
-                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, doc, url)
-                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, doc, url, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
 
                     except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, doc, url)

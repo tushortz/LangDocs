@@ -2,7 +2,7 @@ from .MethodListDocs.javalist import getMethods
 from .MethodListDocs.pythonlist import getPythonFunc
 from .MethodListDocs.rubylist import getRubyFunc
 from .MethodListDocs.webfuncattr import getWebFunc
-import sublime, sublime_plugin, re, sys
+import sublime, sublime_plugin, re, webbrowser
 
 css = (
     "html {background-color: #1B1B17; color: #eefbee; padding: 2px; }" +
@@ -35,8 +35,9 @@ class Method_listCommand(sublime_plugin.WindowCommand):
                 sublime.status_message("Searching for methods ...")
 
                 try:
-                    doc =  "<h1>%s</h1><br>%s<br><br>Read more at: \"<a>%s</a>\"" % (selected, doc.replace("\n", "<br>"), url)
-                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                    doc =  "<h1>%s</h1><br>%s<br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, doc.replace("\n", "<br>"), url, url)
+                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
                 except:
                     doc =  "%s Fields and Methods\n\n%s \n\nRead more at: \"%s\"" % (selected, doc, url)
                     sublime.message_dialog(doc)
@@ -46,8 +47,9 @@ class Method_listCommand(sublime_plugin.WindowCommand):
                 url = getRubyFunc(selected)[1]
 
                 try:
-                    doc =  "<h1>%s Methods</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result.replace("\n", "<br>"), url)
-                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                    doc =  "<h1>%s Methods</h1><br>%s ... <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result.replace("\n", "<br>"), url, url)
+                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
                 except:
                     doc =  "%s Fields and Methods\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result, url)
                     sublime.message_dialog(doc)
@@ -58,8 +60,9 @@ class Method_listCommand(sublime_plugin.WindowCommand):
 
                 if len(result) > 2:
                     try:
-                        doc =  "<h1>%s Attributes</h1><br>%s <br><br>Read more at: \"<a>%s</a>\"" % (selected, result.replace("\n", "<br>"), url)
-                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                        doc =  "<h1>%s Attributes</h1><br>%s <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result.replace("\n", "<br>"), url, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
                     except:
                         doc =  "%s Fields and Methods\n\n%s\n\nRead more at: \"%s\"" % (selected, result, url)
                         sublime.message_dialog(doc)
@@ -73,8 +76,9 @@ class Method_listCommand(sublime_plugin.WindowCommand):
                 if len(result) > 2:
                     sublime.status_message("Reading documentation ...")
                 try:
-                    doc =  "<h1>%s values</h1><br>%s<br><br>Read more at: \"<a>%s</a>\"" % (selected, result, url)
-                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                    doc =  "<h1>%s values</h1><br>%s<br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result, url, url)
+                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                        on_navigate=lambda x:(webbrowser.open(url)))
                 except:
                     doc =  "%s values\n\n%s \n\nRead more at: \"%s\"" % (selected, result, url)
                     sublime.message_dialog(doc)
@@ -87,8 +91,9 @@ class Method_listCommand(sublime_plugin.WindowCommand):
                     sublime.status_message("Reading documentation ...")
 
                     try:
-                        doc =  "<h1>%s Method and Properties</h1><br>%s<br><br>Read more at: \"<a>%s</a>\"" % (selected, result, url)
-                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                        doc =  "<h1>%s Method and Properties</h1><br>%s<br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result, url, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
                     except:
                         doc =  "%s Methods and properties\n\n%s \n\nRead more at: \"%s\"" % (selected, result, url)
                         sublime.message_dialog(doc)
@@ -102,8 +107,9 @@ class Method_listCommand(sublime_plugin.WindowCommand):
                 sublime.status_message("Reading documentation ...")
 
                 try:
-                    doc =  "<h1>%s Method Lists</h1><br>%s <br><br><h1>%s Constants and Others </h1><br>%s <br><br>Read more at: \"<a>%s<a>\"" % (selected, mainlist, selected, otherlist, url)
-                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                    doc =  "<h1>%s Method Lists</h1><br>%s <br><br><h1>%s Constants and Others </h1><br>%s <br><br>Read more at: \"<a href=\"%s\">%s<a>\"" % (selected, mainlist, selected, otherlist, url, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
 
                 except:
                     if len(mainlist) > 0:

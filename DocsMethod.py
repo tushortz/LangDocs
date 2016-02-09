@@ -1,7 +1,7 @@
 from .MethodDocs.matlabdoc import getMatlabFuncDoc
 from .MethodDocs.pydoc import pyFunc
 from .MethodDocs.javainherit import getOthers
-import sublime, sublime_plugin
+import sublime, sublime_plugin, webbrowser
 
 css = (
     "html {background-color: #1B1B17; color: #eefbee; padding: 2px; }" +
@@ -34,8 +34,9 @@ class Method_docsCommand(sublime_plugin.WindowCommand):
                 sublime.status_message("Searching for methods ...")
 
                 try:
-                    doc =  "<h1>%s</h1><br>%s<br><br>Read more at: \"<a>%s</a>\"" % (selected, doc.replace("\n", "<br>"), url)
-                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                    doc =  "<h1>%s</h1><br>%s<br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, doc.replace("\n", "<br>"), url, url)
+                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
                 except:
                     doc =  "%s Fields and Methods\n\n%s \n\nRead more at: \"%s\"" % (selected, doc, url)
                     sublime.message_dialog(doc)
@@ -48,8 +49,9 @@ class Method_docsCommand(sublime_plugin.WindowCommand):
                     sublime.status_message("Reading documentation ...")
 
                     try:
-                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
-                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result[:700], url, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
 
                     except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
@@ -65,8 +67,9 @@ class Method_docsCommand(sublime_plugin.WindowCommand):
                     sublime.status_message("Reading documentation ...")
 
                     try:
-                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a>%s</a>\"" % (selected, result[:700], url)
-                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700)
+                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result[:700], url, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
 
                     except:
                         doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)

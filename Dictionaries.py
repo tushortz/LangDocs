@@ -1,5 +1,5 @@
 from .ClassDocs.dictionary import getDictWords
-import sublime, sublime_plugin
+import sublime, sublime_plugin, webbrowser
 
 css = (
 	"html {background-color: #1B1B17; color: #eefbee; padding: 2px; }" +
@@ -30,12 +30,13 @@ class AntonymsCommand(sublime_plugin.WindowCommand):
 				text = selected[0].title() + selected[1:]
 
 				if len(result) > 2:
-					doc =  "<h1>Antonym of \"%s\"</h1> <b>%s</b><br/>%s <br><br>Read more at: \"<a>%s</a>\"" % (text, spell, result, url)
+					doc =  "<h1>Antonym of \"%s\"</h1> <b>%s</b><br/>%s <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (text, spell, result, url, url)
 
 					sublime.status_message("LangDocs: Looking up word ...")
 
 					try:
-						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700)
+						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700,
+							on_navigate=lambda x:(webbrowser.open(url)))
 
 					except:
 						doc = doc.replace("<br>", "\n").replace("<b>", "").replace("</b>", "").replace("<h1>", "").replace("</h1>","\n").replace("<a>", "").replace("</a>", "").replace("<br/>", "\n")
@@ -68,12 +69,12 @@ class DefinitionCommand(sublime_plugin.WindowCommand):
 				text = selected[0].title() + selected[1:]
 
 				if len(result) > 2:
-					doc =  "<h1>%s Meaning</h1> <b>%s</b><br><br>%s<br><br>Read more at: \"%s\"" % (text, spell, result, url)
+					doc =  "<h1>%s Meaning</h1> <b>%s</b><br><br>%s<br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (text, spell, result, url, url)
 
 					sublime.status_message("LangDocs: Looking up word ...")
 
 					try:
-						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700)
+						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700, on_navigate=lambda x:(webbrowser.open(url)))
 
 					except:
 						doc = doc.replace("<br>", "\n").replace("<b>", "").replace("</b>", "").replace("<h1>", "").replace("</h1>","").replace("<a>", "").replace("</a>", "").replace("<br/>", "\n")
@@ -107,11 +108,12 @@ class SynonymsCommand(sublime_plugin.WindowCommand):
 				text = selected[0].title() + selected[1:]
 
 				if len(result) > 2:
-					doc =  "<h1>Antonym of \"%s\"</h1> <b>%s</b><br/>%s <br><br>Read more at: \"<a>%s</a>\"" % (text, spell, result, url)
+					doc =  "<h1>Synonyms of \"%s\"</h1> <b>%s</b><br/>%s <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (text, spell, result, url, url)
 					sublime.status_message("LangDocs: Looking up word ...")
 
 					try:
-						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700)
+						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700,
+							on_navigate=lambda x:(webbrowser.open(url)))
 
 					except:
 						doc = doc.replace("<br>", "\n").replace("<b>", "").replace("</b>", "").replace("<h1>", "").replace("</h1>","\n").replace("<a>", "").replace("</a>", "").replace("<br/>", "\n")
