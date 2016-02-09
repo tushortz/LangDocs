@@ -108,8 +108,8 @@ class Method_listCommand(sublime_plugin.WindowCommand):
 
                 try:
                     doc =  "<h1>%s Method Lists</h1><br>%s <br><br><h1>%s Constants and Others </h1><br>%s <br><br>Read more at: \"<a href=\"%s\">%s<a>\"" % (selected, mainlist, selected, otherlist, url, url)
-                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
-                            on_navigate=lambda x:(webbrowser.open(url)))
+                    view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                        on_navigate=lambda x:(webbrowser.open(url)))
 
                 except:
                     if len(mainlist) > 0:
