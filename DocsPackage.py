@@ -25,6 +25,7 @@ class Package_docsCommand(sublime_plugin.WindowCommand):
 
         try:
             if scope == "java":
+                sublime.status_message("LangDocs: Looking up package definition")
                 doc = getJavaPackDoc(selected)[0]
                 url = getJavaPackDoc(selected)[1]
 

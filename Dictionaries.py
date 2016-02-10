@@ -24,6 +24,7 @@ class AntonymsCommand(sublime_plugin.WindowCommand):
 
 		try:
 			if scope == "plain":
+				sublime.status_message("LangDocs: Looking up antonyms")
 				url = getDictWords(selected, "antonyms")[0]
 				spell = getDictWords(selected, "antonyms")[1]
 				result = getDictWords(selected, "antonyms")[2]
@@ -31,8 +32,6 @@ class AntonymsCommand(sublime_plugin.WindowCommand):
 
 				if len(result) > 2:
 					doc =  "<h1>Antonym of \"%s\"</h1> <b>%s</b><br/>%s <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (text, spell, result, url, url)
-
-					sublime.status_message("LangDocs: Looking up word ...")
 
 					try:
 						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700,
@@ -63,6 +62,7 @@ class DefinitionCommand(sublime_plugin.WindowCommand):
 
 		try:
 			if scope == "plain":
+				sublime.status_message("LangDocs: Looking up definition")
 				url = getDictWords(selected, "definition")[0]
 				spell = " - " + getDictWords(selected, "definition")[1]
 				result = getDictWords(selected, "definition")[2]
@@ -70,8 +70,6 @@ class DefinitionCommand(sublime_plugin.WindowCommand):
 
 				if len(result) > 2:
 					doc =  "<h1>%s Meaning</h1> <b>%s</b><br><br>%s<br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (text, spell, result, url, url)
-
-					sublime.status_message("LangDocs: Looking up word ...")
 
 					try:
 						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700, on_navigate=lambda x:(webbrowser.open(url)))
@@ -102,6 +100,7 @@ class SynonymsCommand(sublime_plugin.WindowCommand):
 
 		try:
 			if scope == "plain":
+				sublime.status_message("LangDocs: Looking up synonyms")
 				url = getDictWords(selected, "synonyms")[0]
 				spell = getDictWords(selected, "synonyms")[1]
 				result = getDictWords(selected, "synonyms")[2]
@@ -109,7 +108,6 @@ class SynonymsCommand(sublime_plugin.WindowCommand):
 
 				if len(result) > 2:
 					doc =  "<h1>Synonyms of \"%s\"</h1> <b>%s</b><br/>%s <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (text, spell, result, url, url)
-					sublime.status_message("LangDocs: Looking up word ...")
 
 					try:
 						view.show_popup("<style>%s</style>%s" % (css, doc),  max_width=700,

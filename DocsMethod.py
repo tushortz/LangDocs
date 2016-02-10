@@ -27,11 +27,9 @@ class Method_docsCommand(sublime_plugin.WindowCommand):
 
         try:
             if scope == "java":
-
+                sublime.status_message("Searching for methods")
                 doc = getOthers(selected)[0]
                 url = getOthers(selected)[1]
-
-                sublime.status_message("Searching for methods ...")
 
                 try:
                     doc =  "<h1>%s</h1><br>%s<br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, doc.replace("\n", "<br>"), url, url)
@@ -42,37 +40,35 @@ class Method_docsCommand(sublime_plugin.WindowCommand):
                     sublime.message_dialog(doc)
 
             elif scope == "python":
+                sublime.status_message("Reading documentation")
                 url = (pyFunc(selected)[0])
                 result = pyFunc(selected)[1]
 
                 if len(result) > 2:
-                    sublime.status_message("Reading documentation ...")
-
                     try:
-                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result[:700], url, url)
+                        doc =  "<h1>%s documentation</h1><br>%s <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result[:700], url, url)
                         view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
                             on_navigate=lambda x:(webbrowser.open(url)))
 
                     except:
-                        doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
+                        doc =  "%s documentation\n\n%s \n\nRead more at: \"%s\"" % (selected, result[:700], url)
                         sublime.message_dialog(doc)
                 else:
                     sublime.status_message("Can't find documentation")
 
             elif scope == "matlab":
+                sublime.status_message("Reading Function documentation")
                 url = str(getMatlabFuncDoc(selected)[0])
                 result = getMatlabFuncDoc(selected)[1]
 
                 if len(result) > 2:
-                    sublime.status_message("Reading documentation ...")
-
                     try:
-                        doc =  "<h1>%s documentation</h1><br>%s ... <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result[:700], url, url)
+                        doc =  "<h1>%s documentation</h1><br>%s <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result[:700], url, url)
                         view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
                             on_navigate=lambda x:(webbrowser.open(url)))
 
                     except:
-                        doc =  "%s documentation\n\n%s ... \n\nRead more at: \"%s\"" % (selected, result[:700], url)
+                        doc =  "%s documentation\n\n%s \n\nRead more at: \"%s\"" % (selected, result[:700], url)
                         sublime.message_dialog(doc)
             else:
                 sublime.status_message("LangDocs: Language not yet supported")
