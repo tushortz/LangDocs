@@ -1,6 +1,7 @@
-from .MethodDocs.matlabdoc import getMatlabFuncDoc
-from .MethodDocs.pydoc import pyFunc
 from .MethodDocs.javainherit import getOthers
+from .MethodDocs.matlabdoc import getMatlabFuncDoc
+from .MethodDocs.perldoc import getPerlFuncDoc
+from .MethodDocs.pydoc import pyFunc
 import sublime, sublime_plugin, webbrowser
 
 css = (
@@ -14,7 +15,6 @@ css = (
 class Method_docsCommand(sublime_plugin.WindowCommand):
     def run(self):
         sublime.set_timeout_async(self.getFuncData, 0)
-
 
     def getFuncData(self):
         window = self.window
@@ -60,6 +60,23 @@ class Method_docsCommand(sublime_plugin.WindowCommand):
                 sublime.status_message("Reading Function documentation")
                 url = str(getMatlabFuncDoc(selected)[0])
                 result = getMatlabFuncDoc(selected)[1]
+
+                if len(result) > 2:
+                    try:
+                        doc =  "<h1>%s documentation</h1><br>%s <br><br>Read more at: \"<a href=\"%s\">%s</a>\"" % (selected, result[:700], url, url)
+                        view.show_popup("<style>%s</style>%s" % (css, doc), max_width=700,
+                            on_navigate=lambda x:(webbrowser.open(url)))
+
+                    except:
+                        doc =  "%s documentation\n\n%s \n\nRead more at: \"%s\"" % (selected, result[:700], url)
+                        sublime.message_dialog(doc)
+                else:
+                    sublime.status_message("LangDocs: Language not yet supported")
+
+            elif scope == "perl":
+                sublime.status_message("Reading Function documentation")
+                url = str(getPerlFuncDoc(selected)[0])
+                result = getPerlFuncDoc(selected)[1]
 
                 if len(result) > 2:
                     try:

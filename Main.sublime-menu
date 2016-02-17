@@ -62,6 +62,14 @@
             ]
         },
         {
+            "caption": "Perl",
+            "id": "Perl",
+            "children":
+            [
+                { "command": "method_docs", "caption": "Method Description" }
+            ]
+        },
+        {
             "caption": "Python",
             "id": "Python",
             "children":

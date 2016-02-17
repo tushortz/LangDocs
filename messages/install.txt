@@ -15,6 +15,7 @@ Supported Languages and scopes
 * Matlab
 * Plain text (Dictionary)
 * Python
+* Perl
 * Ruby
 
 Where to find LangDocs Menu

@@ -15,6 +15,7 @@ Dictionary definition, scrabble and find with friend points, antonym and synonym
 * Matlab
 * Plain text (Dictionary)
 * Python
+* Perl
 * Ruby
 
 
@@ -158,6 +159,15 @@ Dictionary definition, scrabble and find with friend points, antonym and synonym
 		</td>
 	</tr>
 
+<!-- Perl -->
+	<tr>
+		<td><strong>Perl</strong></td>
+		<td>
+			<strong>Methods Description</strong> - Displays a short description of the selected perl function and a link to its reference for extra information. For example <strong>abs</strong>
+			<br><br><strong>Linux/Windows</strong> - <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>0</kbd>
+			<br><strong>OSX</strong> - <kbd>Super</kbd>+<kbd>Alt</kbd>+<kbd>0</kbd>
+		</td>
+	</tr>
 <!-- Python -->
 	<tr>
 		<td rowspan="3"><strong>Python</strong></td>
