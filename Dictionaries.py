@@ -17,17 +17,17 @@ class AntonymsCommand(sublime_plugin.WindowCommand):
 		window = self.window
 		view = window.active_view()
 		selText = view.sel()[0]
-		xt = str(window.active_view().file_name())
 
 		scope = (view.scope_name(0).split(" ")[0].split(".")[1])
 		selected = view.substr(selText)
 
 		try:
 			if scope == "plain":
-				sublime.status_message("LangDocs: Looking up antonyms")
-				url = getDictWords(selected, "antonyms")[0]
-				spell = getDictWords(selected, "antonyms")[1]
-				result = getDictWords(selected, "antonyms")[2]
+				sublime.status_message("LangDocs: Looking up antonyms of '%s'" % selected)
+				data = getDictWords(selected, "antonyms")
+				url = data[0]
+				spell = data[1]
+				result = data[2]
 				text = selected[0].title() + selected[1:]
 
 				if len(result) > 2:
@@ -43,7 +43,7 @@ class AntonymsCommand(sublime_plugin.WindowCommand):
 
 				else:
 					sublime.status_message("LangDocs: Can't find word")
-		except:
+		except Exception as e:
 			sublime.status_message("LangDocs: Can't find word")
 
 
@@ -55,17 +55,17 @@ class DefinitionCommand(sublime_plugin.WindowCommand):
 		window = self.window
 		view = window.active_view()
 		selText = view.sel()[0]
-		xt = str(window.active_view().file_name())
 
 		scope = (view.scope_name(0).split(" ")[0].split(".")[1])
 		selected = view.substr(selText)
 
 		try:
 			if scope == "plain":
-				sublime.status_message("LangDocs: Looking up definition")
-				url = getDictWords(selected, "definition")[0]
-				spell = " - " + getDictWords(selected, "definition")[1]
-				result = getDictWords(selected, "definition")[2]
+				sublime.status_message("LangDocs: Looking up definition of '%s'" % selected)
+				data = getDictWords(selected, "definition")
+				url = data[0]
+				spell = " - " + data[1]
+				result = data[2]
 				text = selected[0].title() + selected[1:]
 
 				if len(result) > 2:
@@ -93,17 +93,17 @@ class SynonymsCommand(sublime_plugin.WindowCommand):
 		window = self.window
 		view = window.active_view()
 		selText = view.sel()[0]
-		xt = str(window.active_view().file_name())
 
 		scope = (view.scope_name(0).split(" ")[0].split(".")[1])
 		selected = view.substr(selText)
 
 		try:
 			if scope == "plain":
-				sublime.status_message("LangDocs: Looking up synonyms")
-				url = getDictWords(selected, "synonyms")[0]
-				spell = getDictWords(selected, "synonyms")[1]
-				result = getDictWords(selected, "synonyms")[2]
+				sublime.status_message("LangDocs: Looking up synonyms of '%s'" % selected)
+				data = getDictWords(selected, "synonyms")
+				url = data[0]
+				spell = data[1]
+				result = data[2]
 				text = selected[0].title() + selected[1:]
 
 				if len(result) > 2:
