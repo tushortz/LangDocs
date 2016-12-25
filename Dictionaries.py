@@ -21,6 +21,8 @@ class AntonymsCommand(sublime_plugin.WindowCommand):
 		scope = (view.scope_name(0).split(" ")[0].split(".")[1])
 		selected = view.substr(selText)
 
+		if len(str(selected).strip()) == 0: return
+
 		try:
 			if scope == "plain":
 				sublime.status_message("LangDocs: Looking up antonyms of '%s'" % selected)
@@ -59,6 +61,8 @@ class DefinitionCommand(sublime_plugin.WindowCommand):
 		scope = (view.scope_name(0).split(" ")[0].split(".")[1])
 		selected = view.substr(selText)
 
+		if len(str(selected).strip()) == 0: return
+
 		try:
 			if scope == "plain":
 				sublime.status_message("LangDocs: Looking up definition of '%s'" % selected)
@@ -96,6 +100,8 @@ class SynonymsCommand(sublime_plugin.WindowCommand):
 
 		scope = (view.scope_name(0).split(" ")[0].split(".")[1])
 		selected = view.substr(selText)
+
+		if len(str(selected).strip()) == 0: return
 
 		try:
 			if scope == "plain":

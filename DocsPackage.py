@@ -23,6 +23,8 @@ class Package_docsCommand(sublime_plugin.WindowCommand):
         scope = (view.scope_name(0).split(" ")[0].split(".")[1])
         selected = view.substr(selText)
 
+        if len(str(selected).strip()) == 0: return
+
         try:
             if scope == "java":
                 sublime.status_message("LangDocs: Looking up package definition")
