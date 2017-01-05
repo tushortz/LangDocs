@@ -89,5 +89,3 @@ def getDictWords(text, word_type):
 
 
 	except ValueError: return ""
-
-print(getDictWords("excellent", "antonyms"))

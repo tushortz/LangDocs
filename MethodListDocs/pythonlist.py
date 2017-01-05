@@ -23,7 +23,6 @@ def getPythonFunc(text):
 			y = pattern.sub("", x).replace(")", ")#").split("#")[0]
 			value[value.index(x)] = y
 
-		# print(value)
 		main = []; others = [];
 
 		for x in value:
